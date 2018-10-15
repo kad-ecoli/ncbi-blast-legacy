@@ -1,0 +1,34 @@
+.TH TAXBLAST 1 2008-12-13 NCBI "NCBI Tools User's Manual"
+.SH NAME
+taxblast \- taxonomy-enabled BLAST
+.SH SYNOPSIS
+.B taxblast
+[\|\fB\-\fP\|]
+[\|\fB\-d\fP\ \fIstr\fP\|]
+\fB\-i\fP\ \fIfilename\fP
+[\|\fB\-o\fP\ \fIfilename\fP\|]
+[\|\fB\-p\fP\|]
+.SH DESCRIPTION
+\fBtaxblast\fP is a variant of BLAST that makes use of taxonomic
+information.
+.SH OPTIONS
+A summary of options is included below.
+.TP
+\fB\-\fP
+Print usage message
+.TP
+\fB\-d\fP\ \fIstr\fP
+Database used to get SeqAnnot ASN.1 (\fBnr\fP by default)
+.TP
+\fB\-i\fP\ \fIfilename\fP
+Input ASN.1 File (SeqAnnot)
+.TP
+\fB\-o\fP\ \fIfilename\fP
+Output file name (stdout by default)
+.TP
+\fB\-p\fP
+Sequence is DNA
+.SH SEE ALSO
+.BR BLAST (1).
+.SH AUTHOR
+The National Center for Biotechnology Information.

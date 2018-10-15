@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{486047a9-cb1c-4b63-b4c2-3fb69c93adea}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{10a27bfd-497f-457a-8f8d-0f983d31fba7}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Doc">
+      <UniqueIdentifier>{b36b1803-85ac-4a3b-81e8-e5e85e9a02c6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\regexp\chartables.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\regexp\get.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\regexp\maketables.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\regexp\pcre.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\regexp\pcreposix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\regexp\study.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\regexp\pcre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\regexp\pcre_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\regexp\pcre_internal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\regexp\pcreposix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\regexp\doc\AUTHORS">
+      <Filter>Doc</Filter>
+    </None>
+    <None Include="..\..\..\regexp\doc\LICENCE">
+      <Filter>Doc</Filter>
+    </None>
+    <None Include="..\..\..\regexp\doc\NEWS">
+      <Filter>Doc</Filter>
+    </None>
+    <None Include="..\..\..\regexp\doc\NON-UNIX-USE">
+      <Filter>Doc</Filter>
+    </None>
+    <None Include="..\..\..\regexp\doc\README">
+      <Filter>Doc</Filter>
+    </None>
+    <None Include="..\..\..\regexp\README" />
+  </ItemGroup>
+</Project>

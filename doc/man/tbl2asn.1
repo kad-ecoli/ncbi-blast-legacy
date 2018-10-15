@@ -1,0 +1,273 @@
+.TH TBL2ASN 1 2009-07-31 NCBI "NCBI Tools User's Manual"
+.SH NAME
+tbl2asn \- prepare a GenBank submission using an ASCII feature table
+.SH SYNOPSIS
+.B tbl2asn
+[\|\fB\-\fP\|]
+[\|\fB\-A\fP\ \fIstr\fP\|]
+[\|\fB\-C\fP\ \fIstr\fP\|]
+[\|\fB\-D\fP\ \fIfilename\fP\|]
+[\|\fB\-E\fP\|]
+[\|\fB\-F\fP\ \fIstr\fP\|]
+[\|\fB\-G\fP\ \fIstr\fP\|]
+[\|\fB\-H\fP\ \fIstr\fP\|]
+[\|\fB\-K\fP\|]
+[\|\fB\-L\fP\|]
+[\|\fB\-O\fP\|]
+[\|\fB\-P\fP\|]
+[\|\fB\-Q\fP\|]
+[\|\fB\-R\fP\|]
+[\|\fB\-S\fP\|]
+[\|\fB\-T\fP\|]
+[\|\fB\-U\fP\|]
+[\|\fB\-V\fP\ \fIstr\fP\|]
+[\|\fB\-W\fP\|]
+[\|\fB\-X\fP\ \fIstr\fP\|]
+[\|\fB\-Y\fP\ \fIfilename\fP\|]
+[\|\fB\-Z\fP\ \fIfilename\fP\|]
+[\|\fB\-a\fP\ \fIstr\fP\|]
+[\|\fB\-b\fP\|]
+[\|\fB\-c\fP\ \fIstr\fP\|]
+[\|\fB\-f\fP\ \fIfilename\fP\|]
+[\|\fB\-g\fP\|]
+[\|\fB\-h\fP\|]
+[\|\fB\-i\fP\ \fIfilename\fP\|]
+[\|\fB\-j\fP\ \fIstr\fP\|]
+[\|\fB\-k\fP\ \fIstr\fP\|]
+[\|\fB\-n\fP\ \fIstr\fP\|]
+[\|\fB\-o\fP\ \fIfilename\fP\|]
+[\|\fB\-p\fP\ \fIstr\fP\|]
+[\|\fB\-q\fP\|]
+[\|\fB\-r\fP\ \fIstr\fP\|]
+[\|\fB\-s\fP\|]
+[\|\fB\-t\fP\ \fIfilename\fP\|]
+[\|\fB\-u\fP\|]
+[\|\fB\-v\fP\|]
+[\|\fB\-x\fP\ \fIstr\fP\|]
+[\|\fB\-y\fP\ \fIstr\fP\|]
+[\|\fB\-z\fP\|]
+.SH DESCRIPTION
+\fBtbl2asn\fP reads a template along with sequence and table files,
+and outputs ASN.1 for submission to GenBank. Thus, the submitter does
+not need to read each set of table and sequence files into
+Sequin. Furthermore, the template file can contain the organism and
+submitter information common to all records, obviating the need to
+input these data for each sequence/table pair.
+.SH OPTIONS
+A summary of options is included below.
+.TP
+\fB\-\fP
+Print usage message
+.TP
+\fB\-a\fP\ \fIstr\fP
+Accession
+.TP
+\fB\-C\fP\ \fIstr\fP
+Genome Center tag
+.TP
+\fB\-D\fP\ \fIfilename\fP
+Descriptors file
+.TP
+\fB\-E\fP
+Recurse
+.TP
+\fB\-F\fP
+Feature ID links (\fBo\fP by Overlap, \fBp\fP by Product)
+.TP
+\fB\-G\fP\ \fIstr\fP
+Alignment Gap Flags (comma separated fields, e.g., \fBp,\-,\-,\-,?,.\fP )
+\fBn\fP Nucleotide or \fBp\fP Protein,
+Begin, Middle, End Gap Characters,
+Missing Characters, Match Characters
+Alignment middle Gap characters
+.TP
+\fB\-H\fP\ \fIstr\fP
+Hold until publication:
+.RS
+.PD 0
+.IP y
+For one year
+.IP \fImm/dd/yyyy\fP
+Until the specified date
+.PD
+.RE
+.TP
+\fB\-K\fP
+Safe Bioseq-set
+.TP
+\fB\-L\fP
+Force Local protein_id/transcript_id
+.TP
+\fB\-O\fP
+Allow run-on ORFs
+.TP
+\fB\-P\fP
+Remote publication lookup
+.TP
+\fB\-Q\fP
+Special mRNA titles
+.TP
+\fB\-R\fP
+Remote sequence record fetching from ID
+.TP
+\fB\-S\fP
+Smart feature annotation
+.TP
+\fB\-T\fP
+Remote Taxonomy lookup
+.TP
+\fB\-U\fP
+Remove Unnecessary gene xref
+.TP
+\fB\-V\fP\ \fIstr\fP
+Verification (combine any of the following letters)
+.RS
+.PD 0
+.IP v
+Validate with Normal Stringency
+.IP r
+Validate without Country Check
+.IP b
+Generate GenBank Flatfile
+.IP g
+Generate Gene Report
+.PD
+.RE
+.TP
+\fB\-W\fP
+Log progress
+.TP
+\fB\-X\fP\ \fIstr\fP
+Extra flags (combine any of the following letters)
+.RS
+.PD 0
+.IP C
+Apply comments in \fB.cmt\fP files to all sequences
+.PD
+.RE
+.TP
+\fB\-Y\fP\ \fIfilename\fP
+Read a comment string from \fIfilename\fP
+.TP
+\fB\-Z\fP\ \fIfilename\fP
+Write a discrepancy report to \fIfilename\fP
+.TP
+\fB\-a\fP\ \fIstr\fP
+File type:
+.RS
+.PD 0
+.IP a
+Any (default)
+.IP r20u
+Runs of 20+ Ns are gaps, 100 Ns are unknown length
+.IP r20k
+Runs of 20+ Ns are gaps, 100 Ns are known length
+.IP s
+FASTA Set (\fBs\fP Batch, \fBs1\fP Pop, \fBs2\fP Phy, \fBs3\fP Mut,
+\fBs4\fP Eco)
+.IP d
+FASTA Delta
+.IP di
+FASTA Delta with Implicit Gaps
+.IP l
+FASTA+Gap Alignment
+.IP z
+FASTA with Gap Lines
+.IP e
+PHRAP/ACE
+.PD
+.RE
+.TP
+\fB\-b\fP
+Generate GenBank file (deprecated in favor of \fB-V b\fP)
+.TP
+\fB\-c\fP\ \fIstr\fP
+Cleanup (combine any of the following letters)
+.RS
+.PD 0
+.IP d
+Correct Collection Dates (assume month first)
+.IP D
+Correct Collection Dates (assume day first)
+.IP b
+Append note to coding regions that overlap other coding regions with
+similar product names and do not contain 'ABC'
+.IP x
+Extend partial ends of features by one or two nucleotides to abut gaps
+or sequence ends
+.PD
+.RE
+.TP
+\fB\-f\fP\ \fIfilename\fP
+Single table file
+.TP
+\fB\-g\fP
+Input is a genomic product set
+.TP
+\fB\-h\fP
+Convert general ID to note
+.TP
+\fB\-i\fP\ \fIfilename\fP
+Single input file
+.TP
+\fB\-j\fP\ \fIstr\fP
+Source qualifiers
+.TP
+\fB\-k\fP\ \fIstr\fP
+CDS flags (combine any of the following letters)
+.RS
+.PD 0
+.IP c
+Annotate Longest ORF
+.IP r
+Allow Runon ORFs
+.IP m
+Allow Alternative Starts
+.IP k
+Set Conflict on Mismatch
+.PD
+.RE
+.TP
+\fB\-n\fP\ \fIstr\fP
+Organism name
+.TP
+\fB\-o\fP\ \fIfilename\fP
+Single output file
+.TP
+\fB\-p\fP\ \fIstr\fP
+Path to files
+.TP
+\fB\-q\fP
+Set sequence ID from input file name
+.TP
+\fB\-r\fP\ \fIstr\fP
+Path for results
+.TP
+\fB\-s\fP
+Read FASTAs as Set
+.TP
+\fB\-t\fP\ \fIfilename\fP
+Read template from \fIfilename\fP
+.TP
+\fB\-u\fP
+Convert GenProdSet to NucProtSet
+.TP
+\fB\-v\fP
+Validate (deprecated in favor of \fB-V v\fP)
+.TP
+\fB\-x\fP\ \fIstr\fP
+Suffix (default = \fB.fsa\fP)
+.TP
+\fB\-y\fP\ \fIstr\fP
+.TP
+\fB\-z\fP
+Clean up log file
+Comment
+.SH AUTHOR
+The National Center for Biotechnology Information.
+.SH SEE ALSO
+.ad l
+.BR Psequin (1),
+.BR sbtedit (1),
+tbl2asn.txt,
+<http://www.ncbi.nlm.nih.gov/Sequin/table.html>.

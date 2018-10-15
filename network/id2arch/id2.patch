@@ -1,0 +1,143 @@
+*** id2.c	Thu Jan  7 15:08:05 2010
+--- id2.c.new	Thu Jan  7 13:58:12 2010
+*************** ID2ReplyAsnRead(AsnIoPtr aip, AsnTypePtr
+*** 2766,2772 ****
+        if ( AsnReadVal(aip, atp, &av) <= 0) {
+           goto erret;
+        }
+!       ptr -> end_of_reply = av.boolvalue;
+        atp = AsnReadId(aip,amp, atp);
+     }
+     if (atp == ID2_REPLY_reply) {
+--- 2766,2772 ----
+        if ( AsnReadVal(aip, atp, &av) <= 0) {
+           goto erret;
+        }
+!       ptr -> end_of_reply = TRUE;
+        atp = AsnReadId(aip,amp, atp);
+     }
+     if (atp == ID2_REPLY_reply) {
+*************** ID2ReplyAsnRead(AsnIoPtr aip, AsnTypePtr
+*** 2782,2787 ****
+--- 2782,2789 ----
+        }
+        ptr -> discard = av.intvalue;
+        atp = AsnReadId(aip,amp, atp);
++    } else {
++       ptr -> discard = -1;
+     }
+  
+     if (AsnReadVal(aip, atp, &av) <= 0) {
+*************** ID2ReplyAsnWrite(ID2ReplyPtr ptr, AsnIoP
+*** 2961,2975 ****
+        }
+     }
+     AsnGenericUserSeqOfAsnWrite(ptr -> error, (AsnWriteFunc) ID2ErrorAsnWrite, aip, ID2_REPLY_error, ID2_REPLY_error_E);
+!    av.boolvalue = ptr -> end_of_reply;
+!    retval = AsnWrite(aip, ID2_REPLY_end_of_reply,  &av);
+     if (ptr -> Reply_reply != NULL) {
+        if ( ! Reply_replyAsnWrite(ptr -> Reply_reply, aip, ID2_REPLY_reply)) {
+           goto erret;
+        }
+     }
+!    av.intvalue = ptr -> discard;
+!    retval = AsnWrite(aip, ID2_REPLY_discard,  &av);
+     if (! AsnCloseStruct(aip, atp, (Pointer)ptr)) {
+        goto erret;
+     }
+--- 2963,2981 ----
+        }
+     }
+     AsnGenericUserSeqOfAsnWrite(ptr -> error, (AsnWriteFunc) ID2ErrorAsnWrite, aip, ID2_REPLY_error, ID2_REPLY_error_E);
+!    if (ptr -> end_of_reply) {
+!       av.boolvalue = ptr -> end_of_reply;
+!       retval = AsnWrite(aip, ID2_REPLY_end_of_reply,  &av);
+!    }
+     if (ptr -> Reply_reply != NULL) {
+        if ( ! Reply_replyAsnWrite(ptr -> Reply_reply, aip, ID2_REPLY_reply)) {
+           goto erret;
+        }
+     }
+!    if (ptr -> discard != -1) {
+!       av.intvalue = ptr -> discard;
+!       retval = AsnWrite(aip, ID2_REPLY_discard,  &av);
+!    }
+     if (! AsnCloseStruct(aip, atp, (Pointer)ptr)) {
+        goto erret;
+     }
+*************** ID2ReplyGetSeqIdAsnRead(AsnIoPtr aip, As
+*** 3517,3523 ****
+        if ( AsnReadVal(aip, atp, &av) <= 0) {
+           goto erret;
+        }
+!       ptr -> end_of_reply = av.boolvalue;
+        atp = AsnReadId(aip,amp, atp);
+     }
+  
+--- 3523,3529 ----
+        if ( AsnReadVal(aip, atp, &av) <= 0) {
+           goto erret;
+        }
+!       ptr -> end_of_reply = TRUE;
+        atp = AsnReadId(aip,amp, atp);
+     }
+  
+*************** ID2ReplyGetSeqIdAsnWrite(ID2ReplyGetSeqI
+*** 3577,3584 ****
+        }
+     }
+     AsnGenericChoiceSeqOfAsnWrite(ptr -> seq_id, (AsnWriteFunc) SeqIdAsnWrite, aip, ID2_REPLY_GET_SEQ_ID_seq_id, ID2_REPLY_GET_SEQ_ID_seq_id_E);
+!    av.boolvalue = ptr -> end_of_reply;
+!    retval = AsnWrite(aip, REPLY_GET_SEQ_ID_end_of_reply,  &av);
+     if (! AsnCloseStruct(aip, atp, (Pointer)ptr)) {
+        goto erret;
+     }
+--- 3583,3592 ----
+        }
+     }
+     AsnGenericChoiceSeqOfAsnWrite(ptr -> seq_id, (AsnWriteFunc) SeqIdAsnWrite, aip, ID2_REPLY_GET_SEQ_ID_seq_id, ID2_REPLY_GET_SEQ_ID_seq_id_E);
+!    if (ptr -> end_of_reply) {
+!       av.boolvalue = ptr -> end_of_reply;
+!       retval = AsnWrite(aip, REPLY_GET_SEQ_ID_end_of_reply,  &av);
+!    }
+     if (! AsnCloseStruct(aip, atp, (Pointer)ptr)) {
+        goto erret;
+     }
+*************** ID2ReplyGetBlobIdAsnRead(AsnIoPtr aip, A
+*** 3707,3713 ****
+        if ( AsnReadVal(aip, atp, &av) <= 0) {
+           goto erret;
+        }
+!       ptr -> end_of_reply = av.boolvalue;
+        atp = AsnReadId(aip,amp, atp);
+     }
+     if (atp == REPLY_GET_BLOB_ID_blob_state) {
+--- 3715,3721 ----
+        if ( AsnReadVal(aip, atp, &av) <= 0) {
+           goto erret;
+        }
+!       ptr -> end_of_reply = TRUE;
+        atp = AsnReadId(aip,amp, atp);
+     }
+     if (atp == REPLY_GET_BLOB_ID_blob_state) {
+*************** ID2ReplyGetBlobIdAsnWrite(ID2ReplyGetBlo
+*** 3781,3788 ****
+     av.intvalue = ptr -> split_version;
+     retval = AsnWrite(aip, GET_BLOB_ID_split_version,  &av);
+     AsnGenericUserSeqOfAsnWrite(ptr -> annot_info, (AsnWriteFunc) ID2SSeqAnnotInfoAsnWrite, aip, REPLY_GET_BLOB_ID_annot_info, REPLY_GET_BLOB_ID_annot_info_E);
+!    av.boolvalue = ptr -> end_of_reply;
+!    retval = AsnWrite(aip, REPLY_GET_BLOB_ID_end_of_reply,  &av);
+     av.intvalue = ptr -> blob_state;
+     retval = AsnWrite(aip, REPLY_GET_BLOB_ID_blob_state,  &av);
+     if (! AsnCloseStruct(aip, atp, (Pointer)ptr)) {
+--- 3789,3798 ----
+     av.intvalue = ptr -> split_version;
+     retval = AsnWrite(aip, GET_BLOB_ID_split_version,  &av);
+     AsnGenericUserSeqOfAsnWrite(ptr -> annot_info, (AsnWriteFunc) ID2SSeqAnnotInfoAsnWrite, aip, REPLY_GET_BLOB_ID_annot_info, REPLY_GET_BLOB_ID_annot_info_E);
+!    if (ptr -> end_of_reply) {
+!       av.boolvalue = ptr -> end_of_reply;
+!       retval = AsnWrite(aip, REPLY_GET_BLOB_ID_end_of_reply,  &av);
+!    }
+     av.intvalue = ptr -> blob_state;
+     retval = AsnWrite(aip, REPLY_GET_BLOB_ID_blob_state,  &av);
+     if (! AsnCloseStruct(aip, atp, (Pointer)ptr)) {
